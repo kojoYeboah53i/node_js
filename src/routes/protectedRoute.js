@@ -1,4 +1,4 @@
-function auth  (req, res, next) => {
+function auth  (req, res, next) {
 
     if(1 == 1){
         console.log("authenticated")

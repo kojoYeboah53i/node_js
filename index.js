@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const routes = require('./src/routes/routes')
 const path = require('path')
-const auth = require('./src/routes/protectedRoute')
+// const auth = require('./src/routes/protectedRoute')
 
 
 //create new instance of express
@@ -13,11 +13,10 @@ const PORT = 5151;  //server port
 
 
 //middleware
-//To parse URL encoded data
-app.use(bodyParser.urlencoded({ extended: false }))
 
 //To parse json data
-app.use(bodyParser.json());
+app.use(bodyParser.json())
+//allow origin access
 app.use(cors({
     origin : '*'
 }))
@@ -40,6 +39,17 @@ app.get('/admin', auth, (req, res)  => {
   res.send('admin')
 
 });
+
+function auth  (req, res, next) {
+
+  if(1 == 1){
+      console.log("authenticated")
+     return next();
+  }else{
+      return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+}
 
 //handle bad url requests
 app.use((req, res) => {

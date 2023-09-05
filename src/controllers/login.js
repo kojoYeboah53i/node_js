@@ -1,17 +1,9 @@
 const loginUser = async (req, res) => {
+    
     const email = req.body.email;
+    console.log(email)
     const password = req.body.password;
 
-    //checking email is not empty
-    if(email === "" || email === null){
-        res.status(303).json({message: "email cannot be empty"})
-        return;
-    }
-    //checking email is not empty
-    if(password === "" || password === null){
-        res.status(303).json({message: "password cannot be empty"})
-        return;
-    }
 
    //simulate database
    if(email != "yeboah@mail.com"){
@@ -20,7 +12,7 @@ const loginUser = async (req, res) => {
    }else{
     res.status(200).json(
             {
-                name: "Isaac",
+                name: "Micheal",
                 password: "admin1234",
                 email: req.body.email
             }

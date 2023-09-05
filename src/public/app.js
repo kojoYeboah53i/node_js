@@ -10,7 +10,8 @@ window.addEventListener('load', async () =>{
         const result = await fetch('http://localhost:5151/api/auth',{
             method: 'POST',
             headers: {
-                "Content-Type" : "application/json"
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 email: Usermail,
