@@ -25,6 +25,23 @@ app.use(express.static(path.join(__dirname, './src/public')));
 
 //use routes
 app.use('/api', routes)
+// custom middleware
+function loggedUser (req, res, next) {
+  // if condition is true go into the if block
+  if(true){
+      console.log(" 1. before we get to router")
+      console.log("2. authenticated")
+      next();
+     console.log("4. after we got to router")
+
+     return
+  }
+  
+  // return res.status(401).json({ message: 'Unauthorized' });
+    console.log('unauthorized')
+
+}
+
 
 //default application root
 app.get('/', (req, res) => {
@@ -35,21 +52,14 @@ app.get('/', (req, res) => {
       });
 })
 
-app.get('/admin', auth, (req, res)  => {
-  res.send('admin')
+app.get('/admin', loggedUser, (req, res)  => {
+  res.status(200).json({message: 'this user is admin'})
+  console.log('3. after send json')
+
 
 });
 
-function auth  (req, res, next) {
 
-  if(1 == 1){
-      console.log("authenticated")
-     return next();
-  }else{
-      return res.status(401).json({ message: 'Unauthorized' });
-  }
-
-}
 
 //handle bad url requests
 app.use((req, res) => {
