@@ -9,3 +9,8 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5151/admin
+
+
+###
+POST http://localhost:5151/api/logout
+Content-Type: application/json
