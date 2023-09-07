@@ -14,7 +14,8 @@ const loginUser = async (req, res) => {
             {
                 name: "Micheal",
                 password: "admin1234",
-                email: req.body.email
+                email: req.body.email,
+                token : 'this-user-is-authenticated'
             }
         )
    }
