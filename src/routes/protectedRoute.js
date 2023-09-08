@@ -1,16 +1,19 @@
-function authenticated  (req, res, next) {
+const express = require('express');
+const router = express.Router();
+// const admin = require('../controllers/admin');
 
-    const token = req.query.token
-    if(token ==  'this-user-is-authenticated'){
-        console.log("authenticated")
-           next();
-        return 
-    }else{
-        return res.status(401).json({ message: 'Unauthorized' });
-    }
+router.get('/employee', async (req, res) => {
 
-}
+    await res.json({name :  "David", job_title: "footballer", 
+    email: "david@mail.com"})
+  
+  })
+
+router.post('/create-employee', async (req, res) => {
+    console.log('2. inside create employee route')
+    await res.status(200).json({message :  "employee created successfully"})
+
+})
 
 
-
-module.exports.auth = auth;
+module.exports =router;

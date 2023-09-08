@@ -23,3 +23,8 @@
 ## Scalability
 
 ## Deployment
+
+## Installing
+
+- ``` run npm install ``` to install all dependencies
+- ``` knex migrate:make create_employee_table ``` create a migrate file

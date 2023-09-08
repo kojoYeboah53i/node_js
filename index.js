@@ -2,8 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const routes = require('./src/routes/routes')
+const privateRoutes = require('./src/routes/protectedRoute')
 const path = require('path')
-// const auth = require('./src/routes/protectedRoute')
+const loggerUser = require('./src/middleware/verifyToken')
 
 
 //create new instance of express
@@ -25,22 +26,6 @@ app.use(express.static(path.join(__dirname, './src/public')));
 
 //use routes
 app.use('/api', routes)
-// custom middleware
-function loggedUser (req, res, next) {
-  // if condition is true go into the if block
-  if(true){
-      console.log(" 1. before we get to router")
-      console.log("2. authenticated")
-      next();
-     console.log("4. after we got to router")
-
-     return
-  }
-  
-  // return res.status(401).json({ message: 'Unauthorized' });
-    console.log('unauthorized')
-
-}
 
 
 //default application root
@@ -52,7 +37,13 @@ app.get('/', (req, res) => {
       });
 })
 
-app.get('/admin', loggedUser, (req, res)  => {
+// global custom middleware
+app.use(loggerUser)
+
+//protected routes
+app.use('/', privateRoutes)
+
+app.get('/admin', (req, res)  => {
   res.status(200).json({message: 'this user is admin'})
   console.log('3. after send json')
 
