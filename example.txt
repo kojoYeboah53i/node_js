@@ -1,0 +1,29 @@
+const knex = require('knex')({
+  client: 'sqlite3',
+  connection: {
+    filename: './dev_db.sqlite' // SQLite database file location
+  },
+  useNullAsDefault: true
+});
+
+
+// // Create a table in the SQLite database
+// knex.schema.createTable('employees', (table) => {
+//   table.increments('id').primary();
+//   table.string('name');
+//   table.string('email');
+//   table.string('job_title');
+// }).then(() => {
+//   console.log('Table "employees" created');
+// });
+
+knex('employees')
+.insert({
+  "name" : "Isaac Yeboah",
+  "email" : "yekojo@mail.com",
+  "job_title": "software engineer"
+})
+.then((result) => console.log(result))
+.catch((err) => {
+  console.log(err)
+})

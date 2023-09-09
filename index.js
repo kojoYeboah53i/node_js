@@ -11,8 +11,6 @@ const loggerUser = require('./src/middleware/verifyToken')
 const app = express();
 const PORT = 5151;  //server port
 
-
-
 //middleware
 
 //To parse json data

@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-// const admin = require('../controllers/admin');
+const admin = require('../controllers/employee');
 
-router.get('/employee', async (req, res) => {
+router.post('/employees', async (req, res) => {
 
-    await res.json({name :  "David", job_title: "footballer", 
-    email: "david@mail.com"})
+  await  admin.getEmployees(req, res)
   
   })
 

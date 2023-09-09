@@ -10,10 +10,8 @@ module.exports = {
     connection: {
       filename: './dev.sqlite3'
     },
-       migrations: {
-      // directory: '',
-      tableName: 'knex_migrations'
-    }
+    useNullAsDefault: true, // Required for SQLite
+
   },
 
   staging: {
